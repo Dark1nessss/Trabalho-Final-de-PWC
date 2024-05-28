@@ -21,4 +21,4 @@ Este projeto foi realizado por Dmytro Bohutskyy e Luis Martins.
 
 ## Licensa
 
-Este projeto esta com licensiamento de [MIT License](LICENSE).
+Este projeto esta com licensiamento de [GPL-3.0 LICENSE](LICENSE).
