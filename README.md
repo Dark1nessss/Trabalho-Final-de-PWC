@@ -1,24 +1,49 @@
-# Trabalho-Final-de-PWC
+# Trabalho Final de PWC
 
 - [Projeto](#projeto)
-- [Como foi Realizado](#CFR)
+- [Como foi Realizado](#como-foi-realizado)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Contribuições](#contribuições)
-- [Licensa](#licensa)
+- [Contato](#contato)
+- [Licença](#licença)
 
 ## Projeto
 
-Este projeto faz parte do trabalho final da aula de PWC, o mesmo que pertence ao curso de DS(Desenvolvimento de Software) 1°ano do CESTP de ISTEC(Instituto Superior de Tecnologias Avançadas) do Porto.
-A ambição deste projeto é fazer um website que beneficie a alguma empresa/empreendedor(es).
+Este projeto faz parte do trabalho final da aula de PWC, pertencente ao curso de DS (Desenvolvimento de Software) do 1° ano do CESTP de ISTEC (Instituto Superior de Tecnologias Avançadas) do Porto. O objetivo deste projeto é criar um website que beneficie uma empresa ou empreendedor(es).
 
-## CFR
+## Como foi Realizado
 
-Este projeto é feito em HTML, CSS, JavaScript e futuramente PHP.
-A idea seria criar um Website para uma loja de roupa (Mon Père | Porto), nesse proposito para ajudar os clientes sendo vendo o que esta em stock, ajuda virtual como sistema de email/chat support e muito mais!!!
+Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e futuramente PHP. A ideia é criar um website para uma loja de roupa, Mon Père | Porto, com o objetivo de ajudar os clientes a visualizar o estoque disponível, oferecer ajuda virtual através de um sistema de e-mail/chat suporte e muito mais.
+
+## Funcionalidades
+
+- **Visualização de Estoque:** Os clientes podem ver os produtos disponíveis em estoque.
+- **Suporte Virtual:** Sistema de suporte via e-mail ou chat.
+- **Rotação e Animação:** Animações para melhorar a experiência do usuário, como rotação de elementos ao rolar a página.
+- **Integração com Google Maps:** Localização da loja integrada ao site.
+
+## Tecnologias Utilizadas
+
+- **HTML:** Para a estrutura do site.
+- **CSS:** Para o estilo e layout do site.
+- **JavaScript:** Para a interatividade e animações.
+- **PHP (futuramente):** Para funcionalidades dinâmicas e backend.
 
 ## Contribuições
 
 Este projeto foi realizado por Dmytro Bohutskyy e Luis Martins.
 
-## Licensa
+## Contato
 
-Este projeto esta com licensiamento de [GPL-3.0 LICENSE](LICENSE).
+Para mais informações, entre em contato conosco:
+
+- **Email**: dmytro@my.istec.pt
+
+## Licença
+
+Este projeto está licenciado sob a [GPL-3.0 LICENSE](LICENSE).
+
+---
+
+Agradecemos por visitar nosso projeto! Esperamos que ele seja útil e atenda às suas expectativas.
