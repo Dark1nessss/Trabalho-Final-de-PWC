@@ -20,7 +20,8 @@ body
 
 
 .product_img{
-  width: 580px;
+  display: flexbox;
+  align-items: center;
 }
 
 .product_img img{
@@ -29,7 +30,7 @@ body
 
 
 .product_info{
-  width: 260px;
+  width: 500px;
   text-align: justify;
 }
 
