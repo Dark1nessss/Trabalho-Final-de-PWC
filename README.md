@@ -20,7 +20,7 @@ Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e futuramente PHP
 
 - **Visualização de Estoque:** Os clientes podem ver os produtos disponíveis em estoque.
 - **Suporte Virtual:** Sistema de suporte via e-mail ou chat.
-- **Rotação e Animação:** Animações para melhorar a experiência do usuário, como rotação de elementos ao rolar a página.
+- **Rotação e Animação:** Animações para melhorar a experiência do utilizador, como rotação de elementos ao rolar a página.
 - **Integração com Google Maps:** Localização da loja integrada ao site.
 
 ## Tecnologias Utilizadas
