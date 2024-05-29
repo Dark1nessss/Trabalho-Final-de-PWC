@@ -204,3 +204,44 @@ body {
 	margin: 0;
 	box-sizing: border-box;
 }
+
+
+
+
+/* Teste de responsividade */
+
+/* 24 Polegadas */
+@media screen and (min-width: 1920px) {
+	
+	body {
+	  font-size: 18px; 
+	}
+	nav a {
+		font-size: 1.8rem; 
+	  }
+	
+	  /* Ajusto para o Maps */
+	  .map-container iframe {
+		width: 1000px; 
+		height: 500px; 
+	  }
+	
+  }
+  
+  /* 27 Polegadas */
+  @media screen and (min-width: 2560px) {
+	
+	body {
+	  font-size: 20px; 
+	}
+	nav a {
+		font-size: 2rem; 
+	  }
+	
+	  /* Ajusto para o Maps */
+	  .map-container iframe {
+		width: 1200px; 
+		height: 600px; 
+	  }
+  }
+  
