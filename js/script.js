@@ -5,7 +5,7 @@ gsap.from("nav", {
     xPercent: "200",
     ease: "linear",
     scrollTrigger: {
-        trigger: "nav",
+        trigger: ".outer-circle-medium",
         markers: false,
         start: "top 10%",
         end: "bottom 1%",
