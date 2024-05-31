@@ -1,3 +1,5 @@
+// INICIO DO SCROLLTRIGGER
+
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.from("nav", {
@@ -126,3 +128,6 @@ Splitting();
 ScrollOut({
     targets: "[data-splitting]"
 });
+
+
+// FIM DO SCROLLTRIGGER

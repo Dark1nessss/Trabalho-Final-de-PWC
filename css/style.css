@@ -1,3 +1,82 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background: #f5ccc4;
+	background-size: 20px 20px;
+	background-attachment: fixed;
+	overflow-x: hidden;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+}
+
+.map-container {
+    margin-bottom: 20px; 
+    border-radius: 15px; 
+    overflow: hidden; 
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.social-media {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px; 
+    height: 64px; 
+    background: transparent;
+    border: 3.2px solid black; 
+    border-radius: 50%;
+    font-size: 32px; 
+    color: black;
+    transition: 0.5s ease;
+    text-decoration: none;
+}
+
+.social-media a:hover {
+    background: black;
+    color: white;
+    box-shadow: 0 0 16px black; 
+}
+
+.address {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.license-info {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+
+/* SCROLLTRIGGER DO WEBSITE!!!!!! */
 
 nav {
 	position: fixed;
@@ -35,7 +114,7 @@ nav a::before {
 	transform-origin: top right;
 	transition: transform 0.2s ease;
 }
-/* Animate the underline from the left */
+
 nav a:hover::before {
 	transform: scaleX(1);
 	transform-origin: top left;
@@ -172,81 +251,7 @@ h6.end[data-scroll="out"] .char {
 	transform: translateY(3em) scale(0.15);
 }
 
-.bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; 
-}
-
-.map-container {
-    margin-bottom: 20px; 
-    border-radius: 15px; 
-    overflow: hidden; 
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.social-media {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-
-.social-media a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px; 
-    height: 64px; 
-    background: transparent;
-    border: 3.2px solid black; 
-    border-radius: 50%;
-    font-size: 32px; 
-    color: black;
-    transition: 0.5s ease;
-    text-decoration: none;
-}
-
-.social-media a:hover {
-    background: black;
-    color: white;
-    box-shadow: 0 0 16px black; 
-}
-
-.address {
-    text-align: center;
-    font-size: 16px;
-    color: #333;
-}
-
-.license-info {
-    text-align: center; /* Centraliza o texto */
-    font-size: 14px; /* Define o tamanho da fonte */
-    color: #555; /* Define a cor do texto */
-}
-
-body {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	background: #f5ccc4;
-	background-size: 20px 20px;
-	background-attachment: fixed;
-	overflow-x: hidden;
-}
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-}
+/* FIM DO SCROLLTRIGGER */
 
 
 
