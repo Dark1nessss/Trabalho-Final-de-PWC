@@ -39,6 +39,7 @@ Este projeto foi realizado por Dmytro Bohutskyy e Luis Martins.
 Para mais informações, entre em contato conosco:
 
 - **Email**: dmytro@my.istec.pt
+- **Email**: luis.martins.2022209@my.istec.pt
 
 ## Licença
 
