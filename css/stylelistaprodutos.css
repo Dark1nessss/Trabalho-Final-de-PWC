@@ -4,8 +4,10 @@ body {
   background-color: #f0f0f0;
   font-family: Lato, sans-serif;
   justify-content: center;
+  display: flex;
   
 }
+
 
 h1.page-title {
   margin-top: 70px;
@@ -93,8 +95,17 @@ h1.page-title {
   transition: 0.5s;
 }
 
-.product-image img {
-  width: 100%;
+.product-image {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  height: 300px;
+}
+
+.product-image img{
+  width: 100% ;
+  height: 100%;
+  align-items: center;
 }
 
 .product-description h1 {
@@ -177,6 +188,9 @@ h1.page-title {
   opacity: 1;
 }
 
+.product-link {
+ text-align: center;
+}
 .product-link:hover {
   -webkit-animation: hovering 1000ms linear both;
   animation: hovering 1000ms linear both;
