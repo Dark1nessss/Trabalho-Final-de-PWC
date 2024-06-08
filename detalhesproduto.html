@@ -1,35 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/styledetalhesprodutos.css">
+    <title>Detalhes</title>
+    <link rel="stylesheet" href="css/styledetalhesproduto.css">
 </head>
 <body>
-    <div class="body">
-        <div class="product_img">
-          <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F684121357229209%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+  <body>
+    <div class="contentor">
+        <div class="produtounico">
+            <div class="fila">
+                <div class="col-6">
+                    <div class="img-produto">
+                        <div class="img-produto-principal">
+                            <img src="img/tshirt-1.png" alt="" id="img-produto-principal">
+                        </div>
+
+                        <div class="img-produto-slider">
+                            <img src="" alt=""  class="image-list">
+                            <img src="" alt=""  class="image-list">
+                            <img src="" alt=""  class="image-list">
+                            <img src=" alt=""  class="image-list">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="breadcrumb">
+                        <span><a href="index.html">Início</a></span>
+                        <span><a href="listaprodutos.html">Produtos</a></span>
+                        <span class="active">HOODIE</span>
+                    </div>
+
+                    <div class="product">
+                        <div class="titulo">
+                            <h2>CHEETAH GLAM HOODIE</h2>
+                        </div>
+                        <div class="rating">
+                            <span><i class="bx bxs-star"></i></span>
+                            <span><i class="bx bxs-star"></i></span>
+                            <span><i class="bx bxs-star"></i></span>
+                            <span><i class="bx bxs-star"></i></span>
+                            <span><i class="bx bxs-star"></i></span>
+                            <span class="review">(47 Reviews)</span>
+                        </div>
+ <div class="preco">
+    <span class="offer-price">79.99€</span>
+    <span class="sale-price">99.99€</span>
+</div>
+
+<div class="descricao">
+  <h3>Descrição</h3>
+  <p>O CHEETAH GLAM HOODIE é uma peça de roupa única e estilosa, perfeita para quem deseja combinar conforto e elegância no dia a dia. 
+    <br>Com um design moderno, este hoodie apresenta um padrão de estampa de chita que adiciona um toque selvagem e sofisticado ao seu visual.
+    <br>Feito com materiais de alta qualidade, proporciona um ajuste confortável e duradouro. 
+    <br>Ideal para ocasiões casuais e eventos descontraídos. 
+    <br> O CHEETAH GLAM HOODIE é a escolha certa para quem quer se destacar com muito estilo e atitude.</p>
+</div>
+<div class="tamanhos">
+  <h4>Tamanhos</h4>
+  <div class="layout-tamanhos">
+      <input type="radio" name="tamanho" value="S" id="1" class="tamanhos-input">
+      <label for="1" class="size">S</label>
+
+      <input type="radio" name="tamanho" value="M" id="2" class="tamanhos-input">
+      <label for="2" class="size">M</label>
+
+      <input type="radio" name="tamanho" value="L" id="3" class="tamanhos-input">
+      <label for="3" class="size">L</label>
+
+      <input type="radio" name="tamanho" value="XL" id="4" class="tamanhos-input">
+      <label for="4" class="size">XL</label>
+
+      <input type="radio" name="tamanho" value="XXL" id="5" class="tamanhos-input">
+      <label for="5" class="size">XXL</label>
+  </div>
+</div>
+
+<div class="cor-produto">
+                            <h4>Cor</h4>
+                            <div class="layout-cor">
+                                <input type="radio" name="color"  value="black" class="input-cor">
+                                <label for="black" class="black"></label>
+                                <input type="radio" name="color"  value="red" class="input-cor">
+                                <label for="red" class="red"></label>
+                                <input type="radio" name="color"  value="blue" class="input-cor">
+                                <label for="blue" class="blue"></label>
+                            </div>
+                        </div>
+                        
+                        <span class="divisor"></span>
+                        <div class="grupo-btn">
+                            <div class="button comprar-agora"><i class='bx bxs-zap' ></i> Comprar Agora </div>
+                            <div class="button add-cart"><i class='bx bxs-cart' ></i> Adicionar ao Carrinho </div>
+                            <div class="button heart"><i class='bx bxs-heart' ></i> Wishlist </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="product_info">
-          <div class="seller_info">
-            
-          </div>
-          <div class="product_title"> Nome Produto</div>
-          <div class="product_model">Ref:.....
-        </div>
-          <div class="product_price">preço
-        </div>
-          <div class="product_descr">descrição</div>
-          <div class="product_color">cor</div>
-          <div class="product_color">email</div>
-          <div class="product_color">telefone</div>
-          <div class="product_quantity">Quantidade:<br> 
-            <input type="number">
-          </div>
-          <div class="add_to_cart">Adicionar ao Carrinho</div>
-        </div>
-        </div>
-    
+</div>
+
+<script src="js/scriptdetalhesprodutos.js"></script>
+                            
 </body>
 </html>
