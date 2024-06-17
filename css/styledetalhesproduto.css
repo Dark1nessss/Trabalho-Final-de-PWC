@@ -254,6 +254,7 @@
   display: flex;
   gap: 15px;
 }
+
 .grupo-btn .button{
   display: flex;
   align-items: center;
@@ -263,28 +264,32 @@
   font-size: 16px;
   font-weight: 500;
 }
+
 .grupo-btn .comprar-agora{
   background-color: rgb(186, 137, 0);
   color: #fff;
   border: 1px solid rgb(255, 196, 0);
   border-radius: 4px;
   cursor: pointer;
+  transition: ease-in-out 0.6s;
 }
 
 .grupo-btn .comprar-agora i{
   font-size: 20px;
 }
+
 .grupo-btn .comprar-agora:hover{
-  box-shadow: 0 3px 6px var(--shadow);
+  background-color:red;
 }
 
 .grupo-btn .add-cart{
-  
   background-color: var(--bg-grey);
   color: var(--grey);
   border-radius: 4px;
   cursor: pointer;
+  transition: ease-in-out 0.6s;
 }
+
 .grupo-btn .add-cart i{
   font-size: 20px;
 }
@@ -294,13 +299,17 @@
   background: var(--grey);
   color: #fff;
 }
+
 .grupo-btn .heart{
   color: var(--grey);
   cursor: pointer;
+  transition: ease-in-out 0.6s;
 }
+
 .grupo-btn .heart i{
   font-size: 20px;
 }
+
 .grupo-btn .heart:hover{
   color: rgb(146, 0, 0);
 }
