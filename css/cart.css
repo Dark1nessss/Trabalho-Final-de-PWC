@@ -118,6 +118,7 @@ body {
     bottom: 30px;
     font-size: 17px;
     padding: 10px;
+    border-radius: 10px;
 }
   
 .toast.show {
