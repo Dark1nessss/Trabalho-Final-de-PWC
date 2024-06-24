@@ -82,7 +82,7 @@ body {
 nav {
 	position: fixed;
 	top: 10vmin;
-	right: 20vmin;
+	right: 25vmin;
 	width: 15em;
 	height: 10vh;
 	display: flex;

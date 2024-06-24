@@ -1,108 +1,101 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes</title>
+    <title>Detalhes do Produto | Mon Pere Vintage</title>
     <link rel="stylesheet" href="css/styledetalhesproduto.css">
-    <link rel="stylesheet" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
-  <body>
+    <nav class="navbar">
+        <div class="navbar-title">Mon Pere | Porto</div>
+        <div class="navbar-links">
+            <a href="index.html">Pagina</a>
+            <a href="listaprodutos.html">Produtos</a>
+            <a href="contacto.html">Contact</a>
+            <a href="cart.html">Carrinho</a>
+        </div>
+    </nav>
+
     <div class="contentor">
         <div class="produtounico">
+            <div class="breadcrumb">
+                <span><a href="index.html">Home</a></span>
+                <span><a href="listaprodutos.html">Produtos</a></span>
+                <span><a href="detalhesproduto.html">Produto</a></span>
+            </div>
             <div class="fila">
                 <div class="col-6">
                     <div class="img-produto">
                         <div class="img-produto-principal">
-                            <img src="img/img-1.webp" alt="" id="img-produto-principal">
+                            <img src="img/img-1.webp" alt="CHEETAH GLAM HOODIE">
                         </div>
-
                         <div class="img-produto-slider">
-                            <img src="" alt=""  class="image-list">
-                            <img src="" alt=""  class="image-list">
-                            <img src="" alt=""  class="image-list">
-                            <img src="" alt=""  class="image-list">
+                            <img src="img/img-1.webp" alt="Thumbnail 1">
+                            <img src="img/img-2.webp" alt="Thumbnail 2">
+                            <img src="img/img-3.webp" alt="Thumbnail 3">
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="breadcrumb">
-                        <span><a href="index.html">Início</a></span>
-                        <span><a href="listaprodutos.html">Produtos</a></span>
-                        <span class="active">HOODIE</span>
+                    <div class="titulo">
+                        <h2>CHEETAH GLAM HOODIE</h2>
                     </div>
-
-                    <div class="product">
-                        <div class="titulo">
-                            <h2>CHEETAH GLAM HOODIE</h2>
+                    <div class="rating">
+                        <span class="bx bxs-star"></span>
+                        <span class="bx bxs-star"></span>
+                        <span class="bx bxs-star"></span>
+                        <span class="bx bxs-star"></span>
+                        <span class="bx bxs-star-half"></span>
+                        <span class="review">(5 Avaliações)</span>
+                    </div>
+                    <div class="preco">
+                        <span class="offer-price">€79,99</span>
+                        <span class="sale-price">€99,99</span>
+                    </div>
+                    <div class="descricao">
+                        <h3>Descrição do Produto</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae lorem quis massa malesuada lacinia.</p>
+                    </div>
+                    <div class="tamanhos">
+                        <h4>Tamanho</h4>
+                        <div class="layout-tamanhos">
+                            <input type="radio" id="tamanho-s" name="tamanho" class="tamanhos-input">
+                            <label for="tamanho-s" class="tamanho">S</label>
+                            <input type="radio" id="tamanho-m" name="tamanho" class="tamanhos-input">
+                            <label for="tamanho-m" class="tamanho">M</label>
+                            <input type="radio" id="tamanho-l" name="tamanho" class="tamanhos-input">
+                            <label for="tamanho-l" class="tamanho">L</label>
+                            <input type="radio" id="tamanho-xl" name="tamanho" class="tamanhos-input">
+                            <label for="tamanho-xl" class="tamanho">XL</label>
                         </div>
-                        <div class="rating">
-                            <span><i class="bx bxs-star"></i></span>
-                            <span><i class="bx bxs-star"></i></span>
-                            <span><i class="bx bxs-star"></i></span>
-                            <span><i class="bx bxs-star"></i></span>
-                            <span><i class="bx bxs-star"></i></span>
-                            <span class="review">(47 Reviews)</span>
+                    </div>
+                    <div class="cor-produto">
+                        <h4>Cor</h4>
+                        <div class="layout-cor">
+                            <input type="radio" id="cor-preto" name="cor" class="input-cor">
+                            <label for="cor-preto" class="black"></label>
+                            <input type="radio" id="cor-vermelho" name="cor" class="input-cor">
+                            <label for="cor-vermelho" class="red"></label>
+                            <input type="radio" id="cor-azul" name="cor" class="input-cor">
+                            <label for="cor-azul" class="blue"></label>
                         </div>
- <div class="preco">
-    <span class="offer-price">79.99€</span>
-    <span class="sale-price">99.99€</span>
-</div>
-
-<div class="descricao">
-  <h3>Descrição</h3>
-  <p>O CHEETAH GLAM HOODIE é uma peça de roupa única e estilosa, perfeita para quem deseja combinar conforto e elegância no dia a dia. 
-    <br>Com um design moderno, este hoodie apresenta um padrão de estampa de chita que adiciona um toque selvagem e sofisticado ao seu visual.
-    <br>Feito com materiais de alta qualidade, proporciona um ajuste confortável e duradouro. 
-    <br>Ideal para ocasiões casuais e eventos descontraídos. 
-    <br> O CHEETAH GLAM HOODIE é a escolha certa para quem quer se destacar com muito estilo e atitude.</p>
-</div>
-<div class="tamanhos">
-  <h4>Tamanhos</h4>
-  <div class="layout-tamanhos">
-      <input type="radio" name="tamanho" value="S" id="1" class="tamanhos-input">
-      <label for="1" class="size">S</label>
-
-      <input type="radio" name="tamanho" value="M" id="2" class="tamanhos-input">
-      <label for="2" class="size">M</label>
-
-      <input type="radio" name="tamanho" value="L" id="3" class="tamanhos-input">
-      <label for="3" class="size">L</label>
-
-      <input type="radio" name="tamanho" value="XL" id="4" class="tamanhos-input">
-      <label for="4" class="size">XL</label>
-
-      <input type="radio" name="tamanho" value="XXL" id="5" class="tamanhos-input">
-      <label for="5" class="size">XXL</label>
-  </div>
-</div>
-
-<div class="cor-produto">
-                            <h4>Cor</h4>
-                            <div class="layout-cor">
-                                <input type="radio" name="color"  value="black" class="input-cor">
-                                <label for="black" class="black"></label>
-                                <input type="radio" name="color"  value="red" class="input-cor">
-                                <label for="red" class="red"></label>
-                                <input type="radio" name="color"  value="blue" class="input-cor">
-                                <label for="blue" class="blue"></label>
-                            </div>
-                        </div>
-                        
-                        <span class="divisor"></span>
-                        <div class="grupo-btn">
-                            <div class="button comprar-agora"><i class='bx bxs-zap' ></i> Comprar Agora </div>
-                            <div class="button add-cart"><i class='bx bxs-cart' ></i> Adicionar ao Carrinho </div>
-                            <div class="button heart"><i class='bx bxs-heart' ></i> Wishlist </div>
-                        </div>
+                    </div>
+                    <div class="divisor"></div>
+                    <div class="grupo-btn">
+                        <div class="button comprar-agora"><i class='bx bxs-cart'></i> Comprar Agora</div>
+                        <div class="button add-cart"><i class='bx bxs-cart'></i> Adicionar ao Carrinho</div>
+                        <div class="button heart"><i class='bx bx-heart'></i> Adicionar à Lista de Desejos</div>
                     </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>
 
-<script src="js/scriptdetalhesprodutos.js"></script>
-                            
+    <div class="toast" id="toast"></div>
+
+    <script src="js/scriptdetalhesprodutos.js"></script>
 </body>
 </html>

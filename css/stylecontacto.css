@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   user-select: none;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -17,6 +18,7 @@ body {
 
 .navbar {
   width: 100%;
+  background: #4c2b1b;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -45,8 +47,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding-top: 10%;
+  height: 50vh;
 }
 
 .form {
@@ -94,7 +95,7 @@ body {
 
 .form button {
   align-self: flex-end;
-  padding: 8px;
+  padding: 8px 20px;
   outline: 0;
   border: 0;
   border-radius: 8px;
