@@ -19,10 +19,12 @@
     </nav>
 
     <div class="contact-container">
-        <form class="form">
+        <form class="form" action="https://formsubmit.co/dmytro@my.istec.pt" method="POST">
             <div class="titulo">Fale Connosco</div>
             <input type="text" placeholder="Assunto" class="input">
-            <input type="text" placeholder="Seu Email" class="input">
+            <input type="email" name="email" placeholder="Seu Email">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Email enviado com sucessso">
             <textarea placeholder="A sua mensagem"></textarea>
             <button>Enviar 😄</button>
         </form>
