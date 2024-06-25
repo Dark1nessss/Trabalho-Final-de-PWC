@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const cartItemsContainer = document.getElementById('cart-items');
 
-    // Function to render cart items
     function renderCartItems() {
         const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -27,13 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
             cartItemsContainer.appendChild(cartItem);
         });
 
-        // Add event listeners to the remove buttons
         document.querySelectorAll('.remove').forEach(button => {
             button.addEventListener('click', removeCartItem);
         });
     }
 
-    // Function to remove cart items
     function removeCartItem(event) {
         const itemId = event.target.getAttribute('data-id');
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
