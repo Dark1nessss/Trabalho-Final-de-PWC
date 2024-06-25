@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mon Père</h1>
+            <h2>Pagamento</h2>
+            <div class="progress">
+                <span class="completed">✔ Informação</span>
+                <span>2 Detalhes de Pagamento</span>
+                <span>3 Ecomenda Feita</span>
+            </div>
+        </header>
+        <section class="checkout">
+            <div class="left-column">
+                <div class="section">
+                    <h3>Morada de Entrega</h3>
+                    <div class="address-box">
+                        <p><input type="text"></p>
+                        <button>Change</button>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>Contacto</h3>
+                    <form>
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" value="" required>
+                        <label for="mobile">Telefone *</label>
+                        <input type="tel" id="mobile" name="mobile" value="" required>
+                    </form>
+                </div>
+                <div class="section">
+                    <h3>Metudp de Pagamento</h3>
+                    <form>
+                        <input type="radio" id="card" name="payment-method" checked>
+                        <label for="card"> Cartão Débito/Crédito</label>
+                        <div class="card-details">
+                            <label for="card-number">Número de Cartão *</label>
+                            <input type="text" id="card-number" name="card-number" placeholder="1234 1234 1234 1234" required>
+                            <div class="card-info">
+                                <div>
+                                    <label for="valid-date">Data Validade *</label>
+                                    <input type="text" id="valid-date" name="valid-date" placeholder="MM / YYYY" required>
+                                </div>
+                                <div>
+                                    <label for="cvv">CVV *</label>
+                                    <input type="text" id="cvv" name="cvv" required>
+                                </div>
+                            </div>
+                            <button type="submit">Pagar</button>
+                        </div>
+                        <input type="radio" id="net-banking" name="payment-method">
+                        <label for="net-banking">MB Way</label>
+                        <input type="text" id="net-banking" name="Numero Telefone"  placeholder="Número Telefone" required>
+                        
+                    </form>
+                </div>
+            </div>
+            <div class="right-column">
+                <h3>Detalhes da Encomenda</h3>
+                <div class="order-item">
+                    <img src="img/img-1.webp" alt="">
+                    <div class="item-details">
+                        <p>CHEETAH GLAM HOODIE</p>
+                        <p>Hoodies</p>
+                        <p>Tamanho:</p>
+                        <p>Preço:</p>
+                    </div>
+                </div>
+                <div class="summary">
+                    <p>Subtotal: </p>
+                    <p>Portes:</p>
+                    <p>Total:</p>
+                </div>
+                <button class="make-payment">Fazer Pagamento</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
+</body>
+</html>
