@@ -2,11 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const addToCartButton = document.querySelector('.add-cart');
 
     addToCartButton.addEventListener('click', function () {
+        const selectedSize = document.querySelector('input[name="size"]:checked').value;
+        const selectedColor = document.querySelector('input[name="color"]:checked').value;
+
         const product = {
             id: '1',
             name: 'CHEETAH GLAM HOODIE',
             price: '79,99€',
             image: 'img/img-1.webp',
+            size: selectedSize,
+            color: selectedColor,
+            uniqueId: `1-${selectedSize}-${selectedColor}` // Unique ID based on id, size, and color
         };
 
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];

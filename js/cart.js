@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         cartItemsContainer.innerHTML = '';
-        cartItems.forEach(item => {
+        cartItems.forEach((item, index) => {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
 
@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="cart-item-info">
                     <h3>${item.name}</h3>
                     <p>Preço: ${item.price}</p>
+                    <p>Tamanho: ${item.size}</p>
+                    <p>Cor: ${item.color}</p>
                 </div>
-                <div class="btn remove" data-id="${item.id}">Remover</div>
+                <div class="btn remove" data-index="${index}">Remover</div>
             `;
 
             cartItemsContainer.appendChild(cartItem);
@@ -32,10 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function removeCartItem(event) {
-        const itemId = event.target.getAttribute('data-id');
+        const itemIndex = event.target.getAttribute('data-index');
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-        cartItems = cartItems.filter(item => item.id !== itemId);
+        cartItems.splice(itemIndex, 1);
         localStorage.setItem('cart', JSON.stringify(cartItems));
         renderCartItems();
 
@@ -51,6 +53,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     renderCartItems();
-
-
 });
