@@ -28,17 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addToCartButton.addEventListener('click', function () {
         const product = {
-            id: '1', // Unique ID for the product
+            id: '1',
             name: 'CHEETAH GLAM HOODIE',
             price: '79,99€',
-            image: 'img/img-1.webp'
+            image: 'img/img-1.webp',
         };
 
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
         cartItems.push(product);
         localStorage.setItem('cart', JSON.stringify(cartItems));
 
-        // Display toast notification
         const toast = document.createElement('div');
         toast.classList.add('toast');
         toast.textContent = 'Adicionado ao Carrinho';
