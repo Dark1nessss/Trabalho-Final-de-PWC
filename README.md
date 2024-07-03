@@ -28,7 +28,11 @@ Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e futuramente PHP
 - **HTML:** Para a estrutura do site.
 - **CSS:** Para o estilo e layout do site.
 - **JavaScript:** Para a interatividade e animações.
-- **PHP (futuramente):** Para funcionalidades dinâmicas e backend.
+- **Stripe API** Para funcionalidades dinâmicas de pagamento.
+
+## Instalacão
+
+npm install stripe
 
 ## Contribuições
 

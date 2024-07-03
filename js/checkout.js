@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const cardDetails = document.getElementById('card-details');
     const mbWayDetails = document.getElementById('mb-way-details');
 
+    // Initialize Stripe.js
+    const stripe = Stripe('pk_test_51PYQ2LHcjAUCTTasOmnmgbKmCZ0HVY3iClEmoQtiyYXuCD3uXrjDcHHXZLn2zYJLiBmNkJR34Mp1uQt3PiKD4ZAJ00p9eN20Aj'); // Use your publishable key here
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+
     function renderOrderItems() {
         const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
         let subtotal = 0;
@@ -53,11 +59,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    toReviewButton.addEventListener('click', function (event) {
+    toReviewButton.addEventListener('click', async function (event) {
         event.preventDefault();
         if (validatePaymentForm(paymentSection)) {
-            step3.classList.add('active');
-            showConfirmation();
+            if (document.getElementById('card').checked) {
+                // Create payment intent and confirm card payment
+                const { clientSecret } = await fetch('/create-payment-intent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: JSON.parse(localStorage.getItem('cart'))
+                    }),
+                }).then((r) => r.json());
+
+                const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name: document.getElementById('email').value,
+                        },
+                    },
+                });
+
+                if (error) {
+                    showError(error.message);
+                } else if (paymentIntent.status === 'succeeded') {
+                    showConfirmation();
+                }
+            } else if (document.getElementById('mb-way').checked) {
+                // Mock MB Way payment confirmation
+                showConfirmation();
+            }
         } else {
             showError('Por favor, preencha todos os campos obrigatórios corretamente.');
         }
