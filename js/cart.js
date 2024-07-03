@@ -41,9 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('cart', JSON.stringify(cartItems));
         renderCartItems();
 
+        showToast('Removido do Carrinho');
+    }
+
+    function showToast(message) {
         const toast = document.createElement('div');
         toast.classList.add('toast');
-        toast.textContent = 'Removido do Carrinho';
+        toast.textContent = message;
         document.body.appendChild(toast);
         toast.classList.add('show');
         setTimeout(() => {
@@ -51,6 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.removeChild(toast);
         }, 3000);
     }
+
+    // Add checkout button
+    const checkoutButton = document.getElementById('checkout-button');
+    checkoutButton.addEventListener('click', () => {
+        window.location.href = 'checkout.html';
+    });
 
     renderCartItems();
 });
