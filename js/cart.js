@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     }
 
-    // Add checkout button
     const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener('click', () => {
         window.location.href = 'checkout.html';

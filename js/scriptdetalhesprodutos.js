@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             image: 'img/img-1.webp',
             size: selectedSize.value,
             color: selectedColor.value,
-            uniqueId: `1-${selectedSize.value}-${selectedColor.value}-${Date.now()}` // Unique ID based on id, size, color, and timestamp
+            uniqueId: `1-${selectedSize.value}-${selectedColor.value}-${Date.now()}`
         };
 
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];

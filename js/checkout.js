@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         subtotalElement.textContent = `${subtotal.toFixed(2)}€`;
-        totalElement.textContent = `${(subtotal + 5).toFixed(2)}€`; // Assuming shipping cost is 5€
+        totalElement.textContent = `${(subtotal + 5).toFixed(2)}€`;
     }
 
     toPaymentButton.addEventListener('click', function () {
@@ -113,5 +113,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     renderOrderItems();
-    togglePaymentDetails(); // Set initial visibility of payment details
+    togglePaymentDetails();
 });

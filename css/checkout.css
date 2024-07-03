@@ -285,7 +285,7 @@ form button:hover {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
-    background-color: #28a745; /* Success green */
+    background-color: #28a745;
     color: white;
     text-align: center;
     border-radius: 5px;
@@ -305,7 +305,7 @@ form button:hover {
 }
 
 .toast.toast-error {
-    background-color: #dc3545; /* Error red */
+    background-color: #dc3545;
 }
 
 @-webkit-keyframes fadein {
