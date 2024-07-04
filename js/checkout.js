@@ -116,9 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function validatePaymentForm(form) {
         if (document.getElementById('card').checked) {
-            return Array.from(cardDetails.querySelectorAll('input[required]')).every(input => input.value.trim() !== '');
+            return true;
         } else if (document.getElementById('mb-way').checked) {
-            return document.getElementById('mb-way-number').value.trim() !== '';
+            const mbWayNumber = document.getElementById('mb-way-number').value.trim();
+            const mbWayPattern = /^\+351 9\d{2} \d{3} \d{3}$/;
+            return mbWayPattern.test(mbWayNumber);
         }
         return false;
     }

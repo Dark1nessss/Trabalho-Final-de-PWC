@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #4c2b1b;
+    --primary-color: hsl(20, 48%, 20%);
     --accent-color: #5344db;
     --grey: #484848;
     --bg-grey: #efefef;
@@ -189,8 +189,30 @@ form input:focus {
 .mb-way-details {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-bottom: 20px;
 }
+
+.mb-way-details label, 
+.mb-way-details input {
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.mb-way-details input {
+    padding: 10px;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-shadow: none;
+}
+
+.mb-way-details input::placeholder {
+    color: #bfbfbf;
+    font-family: 'Poppins', sans-serif;
+}
+
 
 form button {
     padding: 10px;

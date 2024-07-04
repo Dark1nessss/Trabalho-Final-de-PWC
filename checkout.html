@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | Mon Père</title>
-    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="/css/checkout.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -49,9 +49,7 @@
                             </label>
                         </div>
                         <div class="card-details" id="card-details">
-                            <label for="card-element">Número de Cartão *</label>
                             <div id="card-element"></div>
-                            <div id="card-errors" role="alert"></div>
                         </div>
                         <div class="payment-method">
                             <input type="radio" id="mb-way" name="payment-method" value="mbway">
@@ -59,9 +57,9 @@
                                 <i class='bx bx-mobile-alt'></i> MB Way
                             </label>
                         </div>
-                        <div class="mb-way-details" id="mb-way-details">
+                        <div class="mb-way-details" id="mb-way-details" style="display: none;">
                             <label for="mb-way-number">Número de Telefone *</label>
-                            <input type="text" id="mb-way-number" name="mb-way-number" placeholder="Número de Telefone" required>
+                            <input type="tel" id="mb-way-number" name="mb-way-number" placeholder="+351 912 345 678" pattern="\+351 9[0-9]{2} [0-9]{3} [0-9]{3}" required>
                         </div>
                         <button type="submit" class="next-button" id="to-review">Próximo: Revisar e Enviar</button>
                     </form>
