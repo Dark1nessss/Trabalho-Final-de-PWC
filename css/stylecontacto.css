@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+:root {
+    --primary-color: #4c2b1b;
+    --second-color: #e42f0a;
+    --background-color: #f5ccc4;
+    --white: #ffffff;
+    --grey: #484848;
+    --light-grey: #efefef;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    user-select: none;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -12,7 +21,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #f5ccc4;
+    background: var(--background-color);
     background-size: 20px 20px;
     background-attachment: fixed;
     overflow-x: hidden;
@@ -26,31 +35,31 @@ body {
 
 .navbar {
     width: 100%;
-    background: #4c2b1b;
-    padding: 10px 20px;
+    background: var(--primary-color);
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--white);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 
 .navbar-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
 .navbar-links a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 10px;
     font-size: 1.2rem;
     transition: color 0.3s ease;
     position: relative;
 }
 
 .navbar-links a:hover {
-    color: #f5ccc4;
+    color: var(--second-color);
 }
 
 .navbar-links a::before {
@@ -58,10 +67,10 @@ body {
     position: absolute;
     display: block;
     width: 100%;
-    height: 1.5px;
+    height: 2px;
     bottom: 0;
     left: 0;
-    background: white;
+    background: var(--white);
     transform: scaleX(0);
     transform-origin: top right;
     transition: transform 0.2s ease;
@@ -86,7 +95,7 @@ body {
     flex-direction: column;
     gap: 10px;
     width: 500px;
-    background-color: white;
+    background-color: var(--white);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 30px 30px -30px rgba(27, 26, 26, 0.315);
@@ -99,7 +108,7 @@ body {
 }
 
 .form .titulo {
-    color: #4c2b1b;
+    color: var(--primary-color);
     font-size: 30px;
     font-weight: 600;
     letter-spacing: -1px;
@@ -119,7 +128,7 @@ body {
 }
 
 .form input:focus, .form textarea:focus {
-    border-color: #4c2b1b;
+    border-color: var(--primary-color);
     box-shadow: 0 0 10px rgba(76, 43, 27, 0.1);
 }
 
@@ -136,8 +145,8 @@ body {
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
-    background-color: #4c2b1b;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white);
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
 }
@@ -148,8 +157,8 @@ body {
 }
 
 .footer {
-    background: #4c2b1b;
-    color: white;
+    background: var(--primary-color);
+    color: var(--white);
     padding: 20px 0;
     text-align: center;
     margin-top: auto;
@@ -168,12 +177,12 @@ body {
 }
 
 .footer .social-icons a {
-    color: white;
+    color: var(--white);
     margin: 0 10px;
     font-size: 24px;
     transition: color 0.3s ease;
 }
 
 .footer .social-icons a:hover {
-    color: #e42f0a;
+    color: var(--second-color);
 }

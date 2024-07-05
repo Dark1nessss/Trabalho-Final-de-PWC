@@ -2,7 +2,7 @@
 
 :root {
     --primary-color: #4c2b1b;
-    --accent-color: #e42f0a;
+    --second-color: #e42f0a;
     --background-color: #f5ccc4;
     --white: #ffffff;
     --grey: #484848;
@@ -57,7 +57,7 @@ body {
 }
 
 .navbar-links a:hover {
-    color: var(--accent-color);
+    color: var(--second-color);
 }
 
 .navbar-links a::before {
@@ -132,7 +132,7 @@ body {
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Fixed 3 columns */
     gap: 30px; /* Increased gap */
 }
 
@@ -198,6 +198,6 @@ body {
 }
 
 .btn:hover {
-    background-color: var(--accent-color);
+    background-color: var(--second-color);
     transform: translateY(-2px);
 }
