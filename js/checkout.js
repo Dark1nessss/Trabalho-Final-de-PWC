@@ -33,7 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="item-details">
                     <p>${item.name}</p>
                     <p>Tamanho: ${item.size}</p>
-                    <p>Cor: ${item.color}</p>
+                    <div class="color-info">
+                        <p>Cor: ${item.color}</p> 
+                        <span class="color-box" style="background-color: ${getColorHex(item.color)};"></span>
+                    </div>
                     <p>Preço: ${item.price}</p>
                 </div>
             `;
@@ -46,6 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         subtotalElement.textContent = `${subtotal.toFixed(2)}€`;
         totalElement.textContent = `${(subtotal + 5).toFixed(2)}€`;
+    }
+
+    function getColorHex(colorName) {
+        const colors = {
+            'Preto': 'black',
+            'Vermelho': 'red',
+            'Azul': 'blue'
+        };
+        return colors[colorName] || 'transparent';
     }
 
     toPaymentButton.addEventListener('click', function () {

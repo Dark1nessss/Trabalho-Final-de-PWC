@@ -349,3 +349,16 @@ form button:hover {
     from { bottom: 30px; opacity: 1; }
     to { bottom: 0; opacity: 0; }
 }
+
+.color-info {
+    display: flex;
+    align-items: center;
+}
+
+.color-info .color-box {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
