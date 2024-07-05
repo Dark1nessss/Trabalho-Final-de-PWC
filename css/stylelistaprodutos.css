@@ -1,49 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #4c2b1b;
+    --accent-color: #e42f0a;
+    --background-color: #f5ccc4;
+    --white: #ffffff;
+    --grey: #484848;
+    --light-grey: #efefef;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    user-select: none;
     font-family: 'Poppins', sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5ccc4;
-    background-size: 20px 20px;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
+    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .navbar {
     width: 100%;
-    background: #4c2b1b;
-    padding: 10px 20px;
+    background: var(--primary-color);
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: var(--white);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 
 .navbar-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
 .navbar-links a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 10px;
     font-size: 1.2rem;
     transition: color 0.3s ease;
+    position: relative;
 }
 
 .navbar-links a:hover {
-    color: #f5ccc4;
+    color: var(--accent-color);
+}
+
+.navbar-links a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--white);
+    transform: scaleX(0);
+    transform-origin: top right;
+    transition: transform 0.2s ease;
+}
+
+.navbar-links a:hover::before {
+    transform: scaleX(1);
+    transform-origin: top left;
 }
 
 .search-bar-container {
@@ -68,7 +101,7 @@ body {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-left: none;
-    background-color: #4c2b1b;
+    background-color: var(--primary-color);
     color: white;
     border-radius: 0 25px 25px 0;
     cursor: pointer;
@@ -78,60 +111,93 @@ body {
     justify-content: center;
 }
 
-.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.outer-container {
     width: 100%;
+    display: flex;
+    justify-content: center;
     padding: 20px;
+    background-color: var(--light-grey);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.contentor {
+    width: 90%;
+    max-width: 1500px; /* Increased max-width */
+    margin: 20px auto;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px; /* Increased gap */
 }
 
 .produto {
-    text-align: center;
-    margin: 20px;
+    background-color: var(--white);
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(25% - 40px);
-    transition: transform 0.3s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .produto:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.produto img {
+.img-produto {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
+    height: 200px; /* Adjusted height */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.img-produto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure full image is displayed */
+    transition: transform 0.3s ease;
+}
+
+.img-produto img:hover {
+    transform: scale(1.1);
 }
 
 .produto h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin: 10px 0;
+    color: var(--primary-color);
 }
 
 .produto p {
     font-size: 1rem;
-    color: #333;
+    color: var(--grey);
+    margin-bottom: 10px;
+}
+
+.produto-details {
+    font-size: 0.9rem;
+    color: var(--grey);
+    margin-bottom: 10px;
 }
 
 .btn {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 10px 20px;
     margin-top: 10px;
-    background-color: #4c2b1b;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white);
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
-    background-color: #332014;
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
 }

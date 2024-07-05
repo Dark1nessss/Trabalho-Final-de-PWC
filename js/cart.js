@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h3>${item.name}</h3>
                     <p>Preço: ${item.price}</p>
                     <p>Tamanho: ${item.size}</p>
-                    <p>Cor: ${item.color}</p>
+                    <div class="color-info">
+                        <p>Cor: ${item.color}</p> 
+                        <span class="color-box" style="background-color: ${getColorHex(item.color)};"></span>
+                    </div>
                 </div>
                 <div class="btn remove" data-index="${index}">Remover</div>
             `;
@@ -31,6 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.remove').forEach(button => {
             button.addEventListener('click', removeCartItem);
         });
+    }
+
+    function getColorHex(colorName) {
+        const colors = {
+            'Preto': 'black',
+            'Vermelho': 'red',
+            'Azul': 'blue'
+        };
+        return colors[colorName] || 'transparent';
     }
 
     function removeCartItem(event) {

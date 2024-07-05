@@ -13,6 +13,16 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--bg-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .container {
@@ -22,12 +32,8 @@ body {
     background-color: white;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 header {
@@ -38,12 +44,19 @@ header {
 header h1 {
     font-size: 36px;
     color: var(--primary-color);
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
 }
 
 header h2 {
     font-size: 24px;
     color: var(--accent-color);
     margin-bottom: 20px;
+    animation: slideIn 1s ease-in-out 0.2s;
 }
 
 .progress {
@@ -70,6 +83,12 @@ header h2 {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .left-column, .right-column {
@@ -88,6 +107,21 @@ header h2 {
     font-size: 20px;
     color: var(--primary-color);
     margin-bottom: 10px;
+    position: relative;
+}
+
+.section h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: var(--accent-color);
+    margin-top: 5px;
+    transition: width 0.3s ease;
+}
+
+.section h3:hover::after {
+    width: 100px;
 }
 
 .address-box {
@@ -97,6 +131,7 @@ header h2 {
     padding: 10px;
     border: 1px solid var(--grey);
     border-radius: 5px;
+    transition: border-color 0.3s ease;
 }
 
 .address-box input {
@@ -105,6 +140,10 @@ header h2 {
     border: 1px solid var(--grey);
     border-radius: 5px;
     margin-right: 10px;
+}
+
+.address-box input:focus {
+    border-color: var(--accent-color);
 }
 
 .address-box button {
@@ -147,6 +186,7 @@ form input:focus {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    transition: transform 0.3s ease;
 }
 
 .payment-method input {
@@ -166,23 +206,18 @@ form input:focus {
     color: var(--accent-color);
 }
 
+.payment-method:hover {
+    transform: scale(1.05);
+}
+
 .card-details {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .card-details label, .card-details input {
-    width: 100%;
-}
-
-.card-info {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.card-info div {
     width: 100%;
 }
 
@@ -190,13 +225,14 @@ form input:focus {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .mb-way-details label, 
 .mb-way-details input {
     width: 100%;
-    font-family: sans-serif;
-    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
     color: var(--primary-color);
 }
 
@@ -206,6 +242,7 @@ form input:focus {
     margin-top: 5px;
     margin-bottom: 10px;
     box-shadow: none;
+    background-color: #f3f3f3;
 }
 
 .mb-way-details input::placeholder {
@@ -213,15 +250,21 @@ form input:focus {
     font-family: 'Poppins', sans-serif;
 }
 
+.mb-way-details input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
 
 form button {
-    padding: 10px;
+    padding: 15px;
     border: none;
     background-color: var(--accent-color);
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 form button:hover {
@@ -243,6 +286,11 @@ form button:hover {
     border-radius: 5px;
     box-shadow: 0 2px 4px var(--shadow);
     background-color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.order-item:hover {
+    transform: scale(1.05);
 }
 
 .order-item img {
@@ -265,6 +313,19 @@ form button:hover {
 
 .item-details p {
     margin: 5px 0;
+}
+
+.color-info {
+    display: flex;
+    align-items: center;
+}
+
+.color-info .color-box {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-left: 5px;
 }
 
 .summary {
@@ -350,15 +411,25 @@ form button:hover {
     to { bottom: 0; opacity: 0; }
 }
 
-.color-info {
-    display: flex;
-    align-items: center;
+.navbar-links a:hover {
+    color: white;
 }
 
-.color-info .color-box {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 3px;
-    margin-left: 5px;
+.navbar-links a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    bottom: 0;
+    left: 0;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: top right;
+    transition: transform 0.2s ease;
+}
+
+.navbar-links a:hover::before {
+    transform: scaleX(1);
+    transform-origin: top left;
 }
