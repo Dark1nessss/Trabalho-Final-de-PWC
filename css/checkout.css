@@ -3,7 +3,6 @@
 :root {
     --primary-color: #4c2b1b;
     --second-color: #e42f0a;
-    --background-color: #f5ccc4;
     --white: #ffffff;
     --grey: #484848;
     --light-grey: #efefef;
@@ -14,7 +13,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
+    background-image: linear-gradient(to right, #f5ccc4, rgba(255, 224, 209, 0.667));
     display: flex;
     flex-direction: column;
     align-items: center;
