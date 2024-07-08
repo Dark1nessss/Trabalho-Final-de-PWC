@@ -35,9 +35,10 @@ Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e Node.js. A idei
 
 ## Instalação
 
-npm install express mysql body-parser
-npm install stripe
-Install [Node.js(https://nodejs.org/en)]
+1. Instale [Node.js](https://nodejs.org/en)
+2. Clone o repositório
+3. Navegue até o diretório do projeto
+4. Execute `npm install` para instalar as dependências
 
 ## Contribuições
 
