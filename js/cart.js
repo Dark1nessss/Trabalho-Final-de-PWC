@@ -2,38 +2,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartItemsContainer = document.getElementById('cart-items');
 
     function renderCartItems() {
-        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        fetch('/api/cart')
+            .then(response => response.json())
+            .then(cartItems => {
+                if (cartItems.length === 0) {
+                    cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
+                    return;
+                }
 
-        if (cartItems.length === 0) {
-            cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
-            return;
-        }
+                cartItemsContainer.innerHTML = '';
+                cartItems.forEach((item) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
 
-        cartItemsContainer.innerHTML = '';
-        cartItems.forEach((item, index) => {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h3>${item.name}</h3>
+                            <p>Preço: €${item.price}</p>
+                            <p>Tamanho: ${item.size}</p>
+                            <div class="color-info">
+                                <p>Cor: ${item.color}</p> 
+                                <span class="color-box" style="background-color: ${getColorHex(item.color)};"></span>
+                            </div>
+                            <p>Quantidade: ${item.quantity}</p>
+                        </div>
+                        <div class="btn remove" data-id="${item.id}">Remover</div>
+                    `;
 
-            cartItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="cart-item-info">
-                    <h3>${item.name}</h3>
-                    <p>Preço: ${item.price}</p>
-                    <p>Tamanho: ${item.size}</p>
-                    <div class="color-info">
-                        <p>Cor: ${item.color}</p> 
-                        <span class="color-box" style="background-color: ${getColorHex(item.color)};"></span>
-                    </div>
-                </div>
-                <div class="btn remove" data-index="${index}">Remover</div>
-            `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
 
-            cartItemsContainer.appendChild(cartItem);
-        });
-
-        document.querySelectorAll('.remove').forEach(button => {
-            button.addEventListener('click', removeCartItem);
-        });
+                document.querySelectorAll('.remove').forEach(button => {
+                    button.addEventListener('click', removeCartItem);
+                });
+            });
     }
 
     function getColorHex(colorName) {
@@ -46,14 +49,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function removeCartItem(event) {
-        const itemIndex = event.target.getAttribute('data-index');
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        const itemId = event.target.getAttribute('data-id');
 
-        cartItems.splice(itemIndex, 1);
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        renderCartItems();
-
-        showToast('Removido do Carrinho');
+        fetch(`/api/cart/${itemId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            renderCartItems();
+            showToast(data.message);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     function showToast(message) {

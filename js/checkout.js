@@ -19,36 +19,40 @@ document.addEventListener('DOMContentLoaded', function () {
     cardElement.mount('#card-element');
 
     function renderOrderItems() {
-        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        let subtotal = 0;
+        fetch('/api/cart')
+            .then(response => response.json())
+            .then(cartItems => {
+                let subtotal = 0;
 
-        orderItemsContainer.innerHTML = '';
+                orderItemsContainer.innerHTML = '';
 
-        cartItems.forEach(item => {
-            const orderItem = document.createElement('div');
-            orderItem.classList.add('order-item');
+                cartItems.forEach(item => {
+                    const orderItem = document.createElement('div');
+                    orderItem.classList.add('order-item');
 
-            orderItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="item-details">
-                    <p>${item.name}</p>
-                    <p>Tamanho: ${item.size}</p>
-                    <div class="color-info">
-                        <p>Cor: ${item.color}</p> 
-                        <span class="color-box" style="background-color: ${getColorHex(item.color)};"></span>
-                    </div>
-                    <p>Preço: ${item.price}</p>
-                </div>
-            `;
+                    orderItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <p>${item.name}</p>
+                            <p>Tamanho: ${item.size}</p>
+                            <div class="color-info">
+                                <p>Cor: ${item.color}</p> 
+                                <span class="color-box" style="background-color: ${getColorHex(item.color)};"></span>
+                            </div>
+                            <p>Preço: €${item.price}</p>
+                            <p>Quantidade: ${item.quantity}</p>
+                        </div>
+                    `;
 
-            orderItemsContainer.appendChild(orderItem);
+                    orderItemsContainer.appendChild(orderItem);
 
-            const price = parseFloat(item.price.replace('€', '').replace(',', '.'));
-            subtotal += price;
-        });
+                    const price = parseFloat(item.price);
+                    subtotal += price * item.quantity;
+                });
 
-        subtotalElement.textContent = `${subtotal.toFixed(2)}€`;
-        totalElement.textContent = `${(subtotal + 5).toFixed(2)}€`;
+                subtotalElement.textContent = `${subtotal.toFixed(2)}€`;
+                totalElement.textContent = `${(subtotal + 5).toFixed(2)}€`;
+            });
     }
 
     function getColorHex(colorName) {
