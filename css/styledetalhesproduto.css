@@ -33,7 +33,7 @@ body {
 
 .navbar {
     width: 100%;
-    background: var(--primary-color);
+    background-image: linear-gradient(to right, rgba(107,88,118,255), rgba(183,111,138,255));
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;

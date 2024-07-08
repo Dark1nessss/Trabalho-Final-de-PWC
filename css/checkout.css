@@ -44,7 +44,7 @@ header {
 
 header h1 {
     font-size: 36px;
-    color: var(--primary-color);
+    color: rgba(107,88,118,255);
     animation: slideIn 1s ease-in-out;
 }
 
@@ -55,7 +55,7 @@ header h1 {
 
 header h2 {
     font-size: 24px;
-    color: var(--second-color);
+    color: rgba(183,111,138,255);
     margin-bottom: 20px;
     animation: slideIn 1s ease-in-out 0.2s;
 }
@@ -76,7 +76,7 @@ header h2 {
 }
 
 .progress .step.active {
-    color: var(--second-color);
+    color: rgba(183,111,138,255);
     font-weight: bold;
 }
 
@@ -106,7 +106,7 @@ header h2 {
 
 .section h3 {
     font-size: 20px;
-    color: var(--primary-color);
+    color: rgba(107,88,118,255);
     margin-bottom: 10px;
     position: relative;
 }
@@ -136,7 +136,7 @@ header h2 {
 .address-box button {
     padding: 10px 20px;
     border: none;
-    background-color: var(--primary-color);
+    background-image: linear-gradient(to right, rgba(107,88,118,255), rgba(183,111,138,255));
     color: var(--white);
     border-radius: 5px;
     cursor: pointer;
@@ -144,7 +144,7 @@ header h2 {
 }
 
 .address-box button:hover {
-    background-color: var(--second-color);
+    background-image: rgba(183,111,138,255);
 }
 
 form {
@@ -246,7 +246,7 @@ form input:focus {
 form button {
     padding: 15px;
     border: none;
-    background-color: var(--second-color);
+    background-image: linear-gradient(to right, rgba(107,88,118,255), rgba(183,111,138,255));
     color: var(--white);
     border-radius: 5px;
     cursor: pointer;
@@ -260,7 +260,7 @@ form button:hover {
 
 .right-column h3 {
     font-size: 20px;
-    color: var(--primary-color);
+    color: rgba(107,88,118,255);
     margin-bottom: 10px;
 }
 
@@ -323,7 +323,7 @@ form button:hover {
     justify-content: space-between;
     margin: 5px 0;
     font-size: 16px;
-    color: var(--primary-color);
+    color: rgba(107,88,118,255);
 }
 
 .summary span {
@@ -333,7 +333,7 @@ form button:hover {
 .next-button {
     padding: 15px;
     border: none;
-    background-color: var(--primary-color);
+    background-image: linear-gradient(to right, rgba(107,88,118,255), rgba(183,111,138,255));
     color: var(--white);
     border-radius: 5px;
     font-size: 18px;

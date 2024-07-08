@@ -4,7 +4,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.from("nav", {
     duration: "4",
-    xPercent: "200",
+    xPercent: "20",
     ease: "linear",
     scrollTrigger: {
         trigger: ".outer-circle-medium",

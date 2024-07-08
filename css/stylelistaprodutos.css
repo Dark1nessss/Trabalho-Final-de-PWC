@@ -18,7 +18,7 @@
 }
 
 body {
-    background-color: var(--background-color);
+    background-image: linear-gradient(to right, #f5ccc4, rgba(255, 224, 209, 0.667));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +33,7 @@ body {
 
 .navbar {
     width: 100%;
-    background: var(--primary-color);
+    background-image: linear-gradient(to right, rgba(107,88,118,255), rgba(183,111,138,255));
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -47,6 +47,10 @@ body {
     font-weight: bold;
 }
 
+.navbar-title:hover {
+    color: #f5ccc4;
+}
+
 .navbar-links a {
     color: var(--white);
     text-decoration: none;
@@ -57,7 +61,7 @@ body {
 }
 
 .navbar-links a:hover {
-    color: var(--second-color);
+    color: #f5ccc4;
 }
 
 .navbar-links a::before {
@@ -101,7 +105,7 @@ body {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-left: none;
-    background-color: var(--primary-color);
+    background-color: rgba(107,88,118,255);
     color: white;
     border-radius: 0 25px 25px 0;
     cursor: pointer;
@@ -109,6 +113,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 57.2px;
+    margin-top: 0.5px;
+}
+
+.search-button:hover {
+    background-color: rgba(183,111,138,255);
 }
 
 .outer-container {
@@ -122,18 +132,17 @@ body {
 
 .contentor {
     width: 90%;
-    max-width: 1500px; /* Increased max-width */
+    max-width: 1500px; 
     margin: 20px auto;
     padding: 40px;
-    background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 4px 8px var(--shadow);
 }
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Fixed 3 columns */
-    gap: 30px; /* Increased gap */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
 }
 
 .produto {
@@ -151,17 +160,19 @@ body {
 
 .img-produto {
     width: 100%;
-    height: 200px; /* Adjusted height */
+    height: 100px; 
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
 .img-produto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure full image is displayed */
+    width: 50%;
+    height: 150%;
     transition: transform 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
 }
 
 .img-produto img:hover {
@@ -171,7 +182,7 @@ body {
 .produto h3 {
     font-size: 1.4rem;
     margin: 10px 0;
-    color: var(--primary-color);
+    color: rgba(107,88,118,255);
 }
 
 .produto p {
@@ -190,7 +201,7 @@ body {
     display: inline-block;
     padding: 10px 20px;
     margin-top: 10px;
-    background-color: var(--primary-color);
+    background-color: rgba(107,88,118,255);
     color: var(--white);
     text-decoration: none;
     border-radius: 5px;
@@ -198,6 +209,6 @@ body {
 }
 
 .btn:hover {
-    background-color: var(--second-color);
+    background-color: rgba(183,111,138,255);
     transform: translateY(-2px);
 }
