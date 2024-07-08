@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
     const addToCartButton = document.querySelector('.add-cart');
+
+    function fetchProductDetails() {
+        fetch(`/api/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                document.querySelector('.img-produto-principal img').src = product.image;
+                document.querySelector('.titulo h2').textContent = product.name;
+                document.querySelector('.offer-price').textContent = `€${product.price}`;
+                // Populate other fields similarly
+            });
+    }
 
     addToCartButton.addEventListener('click', function () {
         const selectedSize = document.querySelector('input[name="size"]:checked');
@@ -10,26 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const product = {
-            product_id: 1, // Assuming the product ID is 1, you might want to dynamically set this value
-            size: selectedSize.value,
-            color: selectedColor.value,
-            quantity: 1
-        };
-
         fetch('/api/cart', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(product)
+            body: JSON.stringify({ product_id: productId, quantity: 1 })
         })
         .then(response => response.json())
-        .then(data => {
-            showToast(data.message);
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        .then(() => {
+            showToast('Adicionado ao Carrinho');
         });
     });
 
@@ -44,4 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.removeChild(toast);
         }, 3000);
     }
+
+    fetchProductDetails();
 });

@@ -1,0 +1,15 @@
+{
+  "name": "trabalho-final-de-pwc",
+  "version": "1.0.0",
+  "description": "- [Projeto](#projeto)\r - [Como foi Realizado](#como-foi-realizado)\r - [Funcionalidades](#funcionalidades)\r - [Tecnologias Utilizadas](#tecnologias-utilizadas)\r - [Contribuições](#contribuições)\r - [Contato](#contato)\r - [Licença](#licença)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql": "^2.18.1"
+  }
+}

@@ -4,6 +4,7 @@
 - [Como foi Realizado](#como-foi-realizado)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Instalação](#instalação)
 - [Contribuições](#contribuições)
 - [Contato](#contato)
 - [Licença](#licença)
@@ -14,7 +15,7 @@ Este projeto faz parte do trabalho final da aula de PWC, pertencente ao curso de
 
 ## Como foi Realizado
 
-Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e futuramente PHP. A ideia é criar um website para uma loja de roupa, Mon Père | Porto, com o objetivo de ajudar os clientes a visualizar o estoque disponível, oferecer ajuda virtual através de um sistema de e-mail/chat suporte e muito mais.
+Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e Node.js. A ideia é criar um website para uma loja de roupa, Mon Père | Porto, com o objetivo de ajudar os clientes a visualizar o estoque disponível, oferecer ajuda virtual através de um sistema de e-mail/chat suporte e muito mais.
 
 ## Funcionalidades
 
@@ -28,11 +29,16 @@ Este projeto foi desenvolvido utilizando HTML, CSS, JavaScript e futuramente PHP
 - **HTML:** Para a estrutura do site.
 - **CSS:** Para o estilo e layout do site.
 - **JavaScript:** Para a interatividade e animações.
-- **Stripe API** Para funcionalidades dinâmicas de pagamento.
+- **Node.js e Express:** Para o backend e criação de API.
+- **MySQL:** Para o banco de dados.
+- **Stripe API:** Para funcionalidades dinâmicas de pagamento.
 
-## Instalacão
+## Instalação
 
-npm install stripe
+1. Instale [Node.js](https://nodejs.org/en)
+2. Clone o repositório
+3. Navegue até o diretório do projeto
+4. Execute `npm install` para instalar as dependências
 
 ## Contribuições
 

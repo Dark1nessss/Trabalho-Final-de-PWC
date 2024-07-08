@@ -8,6 +8,8 @@
     --grey: #484848;
     --light-grey: #efefef;
     --shadow: rgba(0, 0, 0, 0.1);
+    --gradient-start: rgba(107, 88, 118, 1);
+    --gradient-end: rgba(183, 111, 138, 1);
 }
 
 * {
@@ -33,7 +35,7 @@ body {
 
 .navbar {
     width: 100%;
-    background-image: linear-gradient(to right, rgba(107,88,118,255), rgba(183,111,138,255));
+    background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -48,7 +50,7 @@ body {
 }
 
 .navbar-title:hover {
-    color: #f5ccc4;
+    color: var(--background-color);
 }
 
 .navbar-links a {
@@ -61,7 +63,7 @@ body {
 }
 
 .navbar-links a:hover {
-    color: #f5ccc4;
+    color: var(--background-color);
 }
 
 .navbar-links a::before {
@@ -105,7 +107,7 @@ body {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-left: none;
-    background-color: rgba(107,88,118,255);
+    background-color: var(--gradient-start);
     color: white;
     border-radius: 0 25px 25px 0;
     cursor: pointer;
@@ -118,7 +120,7 @@ body {
 }
 
 .search-button:hover {
-    background-color: rgba(183,111,138,255);
+    background-color: var(--gradient-end);
 }
 
 .outer-container {
@@ -135,6 +137,7 @@ body {
     max-width: 1500px; 
     margin: 20px auto;
     padding: 40px;
+    background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 4px 8px var(--shadow);
 }
@@ -160,19 +163,17 @@ body {
 
 .img-produto {
     width: 100%;
-    height: 100px; 
+    height: 200px; 
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
 .img-produto img {
-    width: 50%;
-    height: 150%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
-    justify-content: center;
-    align-items: center;
-    margin-left: 100px;
 }
 
 .img-produto img:hover {
@@ -182,7 +183,7 @@ body {
 .produto h3 {
     font-size: 1.4rem;
     margin: 10px 0;
-    color: rgba(107,88,118,255);
+    color: var(--gradient-start);
 }
 
 .produto p {
@@ -201,7 +202,7 @@ body {
     display: inline-block;
     padding: 10px 20px;
     margin-top: 10px;
-    background-color: rgba(107,88,118,255);
+    background-color: var(--gradient-start);
     color: var(--white);
     text-decoration: none;
     border-radius: 5px;
@@ -209,6 +210,6 @@ body {
 }
 
 .btn:hover {
-    background-color: rgba(183,111,138,255);
+    background-color: var(--gradient-end);
     transform: translateY(-2px);
 }
