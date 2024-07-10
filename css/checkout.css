@@ -130,7 +130,7 @@ header h2 {
 }
 
 .address-box input:focus {
-    border-color:#f5ccc4;
+    border-color: var(--second-color);
 }
 
 .address-box button {
@@ -166,7 +166,7 @@ form input {
 }
 
 form input:focus {
-    border-color: #f5ccc4;
+    border-color: var(--second-color);
 }
 
 .payment-method {
