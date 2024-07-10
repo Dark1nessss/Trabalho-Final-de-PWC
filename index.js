@@ -98,12 +98,20 @@ function createDatabaseAndTables() {
                         { name: 'Produto 3', price: 60.00, image: 'img/img-3.webp' }
                     ];
 
-                    let sql = 'INSERT INTO products (name, price, image) VALUES ?';
-                    let values = products.map(product => [product.name, product.price, product.image]);
-
-                    db.query(sql, [values], (err, result) => {
-                        if (err) throw err;
-                        console.log('Dados inseridos na tabela de produtos.');
+                    products.forEach(product => {
+                        let sql = 'SELECT * FROM products WHERE name = ? AND price = ? AND image = ?';
+                        db.query(sql, [product.name, product.price, product.image], (err, result) => {
+                            if (err) throw err;
+                            if (result.length === 0) {
+                                let insertSql = 'INSERT INTO products (name, price, image) VALUES (?, ?, ?)';
+                                db.query(insertSql, [product.name, product.price, product.image], (err, result) => {
+                                    if (err) throw err;
+                                    console.log(`Produto ${product.name} inserido.`);
+                                });
+                            } else {
+                                console.log(`Produto ${product.name} já existe.`);
+                            }
+                        });
                     });
                 });
             });
@@ -149,7 +157,12 @@ app.delete('/api/cart/:id', (req, res) => {
     let sql = 'DELETE FROM cart WHERE id = ?';
     db.query(sql, [id], (err, result) => {
         if (err) throw err;
-        res.json({ message: 'Produto removido do carrinho' });
+
+        // Resetar o auto incremento da tabela cart
+        db.query('ALTER TABLE cart AUTO_INCREMENT = 1', (err, result) => {
+            if (err) throw err;
+            res.json({ message: 'Produto removido do carrinho e IDs resetados' });
+        });
     });
 });
 

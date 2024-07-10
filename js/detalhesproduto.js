@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelector('.img-produto-principal img').src = product.image;
                 document.querySelector('.titulo h2').textContent = product.name;
                 document.querySelector('.offer-price').textContent = `€${product.price}`;
-                // Populate other fields similarly
             });
     }
 
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ product_id: productId, quantity: 1 })
+            body: JSON.stringify({ product_id: productId, size: selectedSize.value, color: selectedColor.value, quantity: 1 })
         })
         .then(response => response.json())
         .then(() => {
