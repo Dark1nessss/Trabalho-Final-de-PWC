@@ -17,7 +17,8 @@ const db = mysql.createConnection({
 // Conecta ao MySQL
 db.connect((err) => {
     if (err) {
-        throw err;
+        console.error('Erro ao conectar ao banco de dados:', err);
+        return;
     }
     console.log('Conectado ao banco de dados MySQL.');
 });
@@ -58,7 +59,11 @@ app.get('/checkout', (req, res) => {
 app.get('/createdb', (req, res) => {
     let sql = 'CREATE DATABASE IF NOT EXISTS mon_pere';
     db.query(sql, (err, result) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Erro ao criar banco de dados:', err);
+            res.send('Erro ao criar banco de dados');
+            return;
+        }
         res.send('Banco de dados criado...');
     });
 });
@@ -69,15 +74,17 @@ app.get('/createtables', (req, res) => {
             id INT AUTO_INCREMENT,
             name VARCHAR(255),
             price DECIMAL(10, 2),
-            size VARCHAR(10),
-            color VARCHAR(50),
             image VARCHAR(255),
             PRIMARY KEY (id)
         );
     `;
     db.query(sql, (err, result) => {
-        if (err) throw err;
-        res.send('Tabela de produtos criada...');
+        if (err) {
+            console.error('Erro ao criar tabela de produtos:', err);
+            res.send('Erro ao criar tabela de produtos');
+            return;
+        }
+        console.log('Tabela de produtos criada...');
     });
 
     let cartSql = `
@@ -90,42 +97,61 @@ app.get('/createtables', (req, res) => {
         );
     `;
     db.query(cartSql, (err, result) => {
-        if (err) throw err;
-        res.send('Tabela de carrinho criada...');
+        if (err) {
+            console.error('Erro ao criar tabela de carrinho:', err);
+            res.send('Erro ao criar tabela de carrinho');
+            return;
+        }
+        res.send('Tabela de produtos e de carrinho criadas...');
     });
 });
 
-app.get('/insertdata', (req, res) => {
+app.get('/', (req, res) => {
     let products = [
-        { name: 'CHEETAH GLAM HOODIE', price: 79.99, size: 'M', color: 'Black', image: 'img/img-1.webp' },
-        { name: 'Produto 2', price: 50.00, size: 'L', color: 'Red', image: 'img/img-2.webp' },
-        { name: 'Produto 3', price: 60.00, size: 'S', color: 'Blue', image: 'img/img-3.webp' }
+        { name: 'CHEETAH GLAM HOODIE', price: 79.99, image: 'img/img-1.webp' },
+        { name: 'Produto 2', price: 50.00, image: 'img/img-2.webp' },
+        { name: 'Produto 3', price: 60.00, image: 'img/img-3.webp' }
     ];
 
-    products.forEach(product => {
-        let checkSql = 'SELECT * FROM products WHERE name = ? AND size = ? AND color = ?';
-        db.query(checkSql, [product.name, product.size, product.color], (err, results) => {
-            if (err) throw err;
-            if (results.length === 0) {
-                let insertSql = 'INSERT INTO products (name, price, size, color, image) VALUES (?, ?, ?, ?, ?)';
-                db.query(insertSql, [product.name, product.price, product.size, product.color, product.image], (err, result) => {
-                    if (err) throw err;
-                    console.log(`Produto ${product.name} inserido.`);
-                });
-            } else {
-                console.log(`Produto ${product.name} já existe.`);
-            }
-        });
+    let checkIfEmptySql = 'SELECT COUNT(*) AS count FROM products';
+    db.query(checkIfEmptySql, (err, results) => {
+        if (err) {
+            console.error('Erro ao verificar tabela de produtos:', err);
+            res.send('Erro ao verificar tabela de produtos');
+            return;
+        }
+        if (results[0].count === 0) {
+            let insertSql = `
+                INSERT INTO products (name, price, image) VALUES
+                ('CHEETAH GLAM HOODIE', 79.99, 'img/img-1.webp'),
+                ('Produto 2', 50.00, 'img/img-2.webp'),
+                ('Produto 3', 60.00, 'img/img-3.webp')
+            `;
+            db.query(insertSql, (err, result) => {
+                if (err) {
+                    console.error('Erro ao inserir produtos:', err);
+                    res.send('Erro ao inserir produtos');
+                    return;
+                }
+                console.log('Produtos inseridos.');
+                res.send('Produtos inseridos.');
+            });
+        } else {
+            console.log('Os produtos já existem, não foram inseridos.');
+            res.send('Os produtos já existem, não foram inseridos.');
+        }
     });
-
-    res.send('Verificação e inserção de dados concluídas...');
 });
 
 // Rota para obter os produtos
 app.get('/api/products', (req, res) => {
     let sql = 'SELECT * FROM products';
     db.query(sql, (err, results) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Erro ao obter produtos:', err);
+            res.send('Erro ao obter produtos');
+            return;
+        }
         res.json(results);
     });
 });
@@ -135,7 +161,11 @@ app.post('/api/cart', (req, res) => {
     let { product_id, quantity } = req.body;
     let sql = 'INSERT INTO cart (product_id, quantity) VALUES (?, ?)';
     db.query(sql, [product_id, quantity], (err, result) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Erro ao adicionar ao carrinho:', err);
+            res.send('Erro ao adicionar ao carrinho');
+            return;
+        }
         res.json({ message: 'Produto adicionado ao carrinho' });
     });
 });
@@ -148,7 +178,11 @@ app.get('/api/cart', (req, res) => {
         JOIN products ON cart.product_id = products.id
     `;
     db.query(sql, (err, results) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Erro ao obter itens do carrinho:', err);
+            res.send('Erro ao obter itens do carrinho');
+            return;
+        }
         res.json(results);
     });
 });
@@ -158,7 +192,11 @@ app.delete('/api/cart/:id', (req, res) => {
     let { id } = req.params;
     let sql = 'DELETE FROM cart WHERE id = ?';
     db.query(sql, [id], (err, result) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Erro ao remover item do carrinho:', err);
+            res.send('Erro ao remover item do carrinho');
+            return;
+        }
         res.json({ message: 'Produto removido do carrinho' });
     });
 });
