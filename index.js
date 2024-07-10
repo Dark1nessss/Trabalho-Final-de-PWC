@@ -66,12 +66,18 @@ function createDatabaseAndTables() {
 
             let createProductsTable = `
                 CREATE TABLE IF NOT EXISTS products (
-                    id INT AUTO_INCREMENT,
-                    name VARCHAR(255),
-                    price DECIMAL(10, 2),
-                    image VARCHAR(255),
-                    PRIMARY KEY (id)
-                )
+                id INT AUTO_INCREMENT,
+                name VARCHAR(255),
+                price DECIMAL(10, 2),
+                sale_price DECIMAL(10, 2),
+                description TEXT,
+                stars INT,
+                image VARCHAR(255),
+                thumbnail1 VARCHAR(255),
+                thumbnail2 VARCHAR(255),
+                thumbnail3 VARCHAR(255),
+                PRIMARY KEY (id)
+            );
             `;
             db.query(createProductsTable, (err, result) => {
                 if (err) throw err;
@@ -93,9 +99,9 @@ function createDatabaseAndTables() {
                     console.log('Tabela de carrinho criada ou já existe.');
 
                     let products = [
-                        { name: 'CHEETAH GLAM HOODIE', price: 79.99, image: 'img/img-1.webp' },
-                        { name: 'Produto 2', price: 50.00, image: 'img/img-2.webp' },
-                        { name: 'Produto 3', price: 60.00, image: 'img/img-3.webp' }
+                        { id: 1 , name: 'CHEETAH GLAM HOODIE', price: 79.99, sale_price: 99.99 , description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', stars: 4 , image: 'img/img-1.webp', thumbnail1:'img/img-1.webp' , thumbnail2:'img/img-1.webp' , thumbnail3:'img/img-1.webp'},
+                        { id: 2 , name: 'Sweater Bruh', price: 50.00, sale_price: 59.99 ,  description: 'Incrivel', stars: 5 , image: 'img/image.webp', thumbnail1:'img/image.webp' , thumbnail2:'img/image.webp' , thumbnail3:'img/image.webp' },
+                        { id: 3 , name: 'Quadro', price: 60.00, sale_price: 89.99 ,  description: 'Fodase Mesmo', stars: 3 , image: 'img/foto.jpg', thumbnail1:'img/foto.jpg' , thumbnail2:'img/foto.jpg' , thumbnail3:'img/foto.jpg' },
                     ];
 
                     products.forEach(product => {
@@ -103,8 +109,8 @@ function createDatabaseAndTables() {
                         db.query(sql, [product.name, product.price, product.image], (err, result) => {
                             if (err) throw err;
                             if (result.length === 0) {
-                                let insertSql = 'INSERT INTO products (name, price, image) VALUES (?, ?, ?)';
-                                db.query(insertSql, [product.name, product.price, product.image], (err, result) => {
+                                let insertSql = 'INSERT INTO products (name, price, image, description, stars) VALUES (?, ?, ?, ?, ?)';
+                                db.query(insertSql, [product.name, product.price, product.image, product.description, product.stars], (err, result) => {
                                     if (err) throw err;
                                     console.log(`Produto ${product.name} inserido.`);
                                 });
@@ -127,6 +133,20 @@ app.get('/api/products', (req, res) => {
         res.json(results);
     });
 });
+
+// Rota para obter detalhes de um produto
+app.get('/api/products/:id', (req, res) => {
+    const productId = req.params.id;
+    let sql = 'SELECT * FROM products WHERE id = ?';
+    db.query(sql, [productId], (err, result) => {
+        if (err) throw err;
+        if (result.length === 0) {
+            res.status(404).send('Product not found');
+        } else {
+            res.json(result[0]);
+        }
+    });
+}); 
 
 // Rota para adicionar ao carrinho
 app.post('/api/cart', (req, res) => {

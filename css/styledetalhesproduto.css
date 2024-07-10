@@ -188,10 +188,6 @@ body {
     align-items: center;
 }
 
-.rating span:not(:last-child) {
-    color: #ffc600;
-}
-
 .rating .review {
     color: var(--grey);
     font-size: 12px;
