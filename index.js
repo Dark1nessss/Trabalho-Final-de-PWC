@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 const port = 3000;
@@ -26,6 +28,12 @@ db.connect((err) => {
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'secret-key', // replace with a secure key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // set to true in production with HTTPS
+}));
 
 // Servir arquivos estáticos
 app.use(express.static(path.join(__dirname)));
@@ -184,6 +192,61 @@ app.delete('/api/cart/:id', (req, res) => {
             res.json({ message: 'Produto removido do carrinho e IDs resetados' });
         });
     });
+});
+
+// Rota para registrar usuário
+app.post('/users/register', (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).send('Email and password are required');
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 8);
+    const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
+    db.query(sql, [email, hashedPassword], (err, result) => {
+        if (err) {
+            console.error('Error registering user:', err);
+            return res.status(500).send('Error registering user');
+        }
+        res.send('User registered successfully');
+    });
+});
+
+// Rota para login de usuário
+app.post('/users/login', (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).send('Email and password are required');
+    }
+
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    db.query(sql, [email], (err, results) => {
+        if (err) {
+            console.error('Error fetching user:', err);
+            return res.status(500).send('Error fetching user');
+        }
+
+        if (results.length === 0) {
+            return res.status(400).send('User not found');
+        }
+
+        const user = results[0];
+        const passwordIsValid = bcrypt.compareSync(password, user.password);
+
+        if (!passwordIsValid) {
+            return res.status(400).send('Invalid password');
+        }
+
+        // Save user session
+        req.session.user = { id: user.id, email: user.email };
+        res.send('Login successful');
+    });
+});
+
+// Rota para logout de usuário
+app.get('/users/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 app.listen(port, () => {

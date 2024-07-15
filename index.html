@@ -34,7 +34,7 @@
                         <label><input type="checkbox" name="remember"> Remember for 30 days</label>
                         <a href="#">Forgot password?</a>
                     </div>
-                    <button type="submit">Sign in</button>
+                    <button type="submit">Sign In</button>
                 </form>
                 <p class="signup-link">Don't have an account? <a href="#" id="show-register">Create account</a></p>
             </div>
@@ -48,6 +48,9 @@
                 <form action="/users/register" method="post">
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>
+                    <div class="remember-forgot">
+                        <label>Remeber to use a strong password!</label>
+                    </div>
                     <button type="submit">Sign Up</button>
                 </form>
                 <p class="signup-link">Already have an account? <a href="#" id="show-login">Sign in</a></p>
@@ -115,7 +118,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
+
+document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('modal');
     const loginRegisterLink = document.getElementById('login-register');
     const closeModal = document.getElementsByClassName('close')[0];
@@ -124,23 +128,45 @@
     const showRegisterLink = document.getElementById('show-register');
     const showLoginLink = document.getElementById('show-login');
 
+    // Check login state on page load
+    fetch('/users/login-status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                loginRegisterLink.textContent = 'Logout';
+            } else {
+                loginRegisterLink.textContent = 'Login';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+
     loginRegisterLink.onclick = function () {
-        modal.style.display = 'flex';
-        modal.classList.add('fade-in');
-        modal.classList.remove('fade-out');
+        if (loginRegisterLink.textContent === 'Logout') {
+            fetch('/users/logout')
+                .then(response => {
+                    if (response.ok) {
+                        loginRegisterLink.textContent = 'Login';
+                        window.location.href = '/';
+                    }
+                });
+        } else {
+            modal.style.display = 'flex';
+            modal.classList.add('fade-in');
+            modal.classList.remove('fade-out');
+        }
     }
 
     closeModal.onclick = function () {
         modal.classList.add('fade-out');
         modal.classList.remove('fade-in');
-        setTimeout(() => modal.style.display = 'none', 500);
+        setTimeout(() => modal.style.display = 'none', 300);
     }
 
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.classList.add('fade-out');
             modal.classList.remove('fade-in');
-            setTimeout(() => modal.style.display = 'none', 500);
+            setTimeout(() => modal.style.display = 'none', 300);
         }
     }
 
@@ -154,6 +180,47 @@
         event.preventDefault();
         registerForm.classList.add('hidden');
         loginForm.classList.remove('hidden');
+    }
+
+    // Handle form submissions
+    document.querySelector('#login-form form').onsubmit = function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        fetch('/users/login', {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            if (data.includes('Login successful')) {
+                loginRegisterLink.textContent = 'Logout';
+                modal.classList.add('fade-out');
+                modal.classList.remove('fade-in');
+                setTimeout(() => modal.style.display = 'none', 300);
+                window.location.href = '/index.html';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelector('#register-form form').onsubmit = function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        fetch('/users/register', {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            if (data.includes('User registered successfully')) {
+                showLoginLink.click();
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
 });
     </script>
