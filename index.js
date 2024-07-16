@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const bcrypt = require('bcryptjs');
+const session = require('express-session');
 
 const app = express();
 const port = 3000;
@@ -28,11 +28,12 @@ db.connect((err) => {
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Configuração de sessão
 app.use(session({
-    secret: 'secret-key', // replace with a secure key
+    secret: 'your_secret_key',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // set to true in production with HTTPS
+    saveUninitialized: true
 }));
 
 // Servir arquivos estáticos
@@ -60,6 +61,9 @@ app.get('/cart', (req, res) => {
 });
 
 app.get('/checkout', (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
     res.sendFile(path.join(__dirname, 'checkout.html'));
 });
 
@@ -106,25 +110,39 @@ function createDatabaseAndTables() {
                     if (err) throw err;
                     console.log('Tabela de carrinho criada ou já existe.');
 
-                    let products = [
-                        { id: 1 , name: 'CHEETAH GLAM HOODIE', price: 79.99, sale_price: 99.99 , description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', stars: 4 , image: 'img/img-1.webp', thumbnail1:'img/img-1.webp' , thumbnail2:'img/img-1.webp' , thumbnail3:'img/img-1.webp'},
-                        { id: 2 , name: 'Sweater Bruh', price: 50.00, sale_price: 59.99 ,  description: 'Incrivel', stars: 5 , image: 'img/image.webp', thumbnail1:'img/image.webp' , thumbnail2:'img/image.webp' , thumbnail3:'img/image.webp' },
-                        { id: 3 , name: 'Quadro', price: 60.00, sale_price: 89.99 ,  description: 'Fodase Mesmo', stars: 3 , image: 'img/foto.jpg', thumbnail1:'img/foto.jpg' , thumbnail2:'img/foto.jpg' , thumbnail3:'img/foto.jpg' },
-                    ];
+                    let createUsersTable = `
+                        CREATE TABLE IF NOT EXISTS users (
+                            id INT AUTO_INCREMENT,
+                            email VARCHAR(255) NOT NULL,
+                            password VARCHAR(255) NOT NULL,
+                            PRIMARY KEY (id),
+                            UNIQUE KEY unique_email (email)
+                        )
+                    `;
+                    db.query(createUsersTable, (err, result) => {
+                        if (err) throw err;
+                        console.log('Tabela de usuários criada ou já existe.');
 
-                    products.forEach(product => {
-                        let sql = 'SELECT * FROM products WHERE name = ? AND price = ? AND image = ?';
-                        db.query(sql, [product.name, product.price, product.image], (err, result) => {
-                            if (err) throw err;
-                            if (result.length === 0) {
-                                let insertSql = 'INSERT INTO products (name, price, image, description, stars) VALUES (?, ?, ?, ?, ?)';
-                                db.query(insertSql, [product.name, product.price, product.image, product.description, product.stars], (err, result) => {
-                                    if (err) throw err;
-                                    console.log(`Produto ${product.name} inserido.`);
-                                });
-                            } else {
-                                console.log(`Produto ${product.name} já existe.`);
-                            }
+                        let products = [
+                            { id: 1, name: 'CHEETAH GLAM HOODIE', price: 79.99, sale_price: 99.99, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', stars: 4, image: 'img/img-1.webp', thumbnail1: 'img/img-1.webp', thumbnail2: 'img/img-1.webp', thumbnail3: 'img/img-1.webp' },
+                            { id: 2, name: 'Sweater Bruh', price: 50.00, sale_price: 59.99, description: 'Incrivel', stars: 5, image: 'img/image.webp', thumbnail1: 'img/image.webp', thumbnail2: 'img/image.webp', thumbnail3: 'img/image.webp' },
+                            { id: 3, name: 'Quadro', price: 60.00, sale_price: 89.99, description: 'Fodase Mesmo', stars: 3, image: 'img/foto.jpg', thumbnail1: 'img/foto.jpg', thumbnail2: 'img/foto.jpg', thumbnail3: 'img/foto.jpg' },
+                        ];
+
+                        products.forEach(product => {
+                            let sql = 'SELECT * FROM products WHERE name = ? AND price = ? AND image = ?';
+                            db.query(sql, [product.name, product.price, product.image], (err, result) => {
+                                if (err) throw err;
+                                if (result.length === 0) {
+                                    let insertSql = 'INSERT INTO products (name, price, image, description, stars) VALUES (?, ?, ?, ?, ?)';
+                                    db.query(insertSql, [product.name, product.price, product.image, product.description, product.stars], (err, result) => {
+                                        if (err) throw err;
+                                        console.log(`Produto ${product.name} inserido.`);
+                                    });
+                                } else {
+                                    console.log(`Produto ${product.name} já existe.`);
+                                }
+                            });
                         });
                     });
                 });
@@ -154,7 +172,7 @@ app.get('/api/products/:id', (req, res) => {
             res.json(result[0]);
         }
     });
-}); 
+});
 
 // Rota para adicionar ao carrinho
 app.post('/api/cart', (req, res) => {
@@ -194,19 +212,17 @@ app.delete('/api/cart/:id', (req, res) => {
     });
 });
 
-// Rota para registrar usuário
+// Rota para registro de usuário
 app.post('/users/register', (req, res) => {
     const { email, password } = req.body;
-    if (!email || !password) {
-        return res.status(400).send('Email and password are required');
-    }
-
-    const hashedPassword = bcrypt.hashSync(password, 8);
-    const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    let sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
     db.query(sql, [email, hashedPassword], (err, result) => {
         if (err) {
-            console.error('Error registering user:', err);
-            return res.status(500).send('Error registering user');
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(400).send('Email already exists');
+            }
+            throw err;
         }
         res.send('User registered successfully');
     });
@@ -215,24 +231,14 @@ app.post('/users/register', (req, res) => {
 // Rota para login de usuário
 app.post('/users/login', (req, res) => {
     const { email, password } = req.body;
-    if (!email || !password) {
-        return res.status(400).send('Email and password are required');
-    }
-
-    const sql = 'SELECT * FROM users WHERE email = ?';
+    let sql = 'SELECT * FROM users WHERE email = ?';
     db.query(sql, [email], (err, results) => {
-        if (err) {
-            console.error('Error fetching user:', err);
-            return res.status(500).send('Error fetching user');
-        }
-
+        if (err) throw err;
         if (results.length === 0) {
             return res.status(400).send('User not found');
         }
-
         const user = results[0];
         const passwordIsValid = bcrypt.compareSync(password, user.password);
-
         if (!passwordIsValid) {
             return res.status(400).send('Invalid password');
         }
@@ -245,8 +251,21 @@ app.post('/users/login', (req, res) => {
 
 // Rota para logout de usuário
 app.get('/users/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).send('Could not log out.');
+        }
+        res.redirect('/');
+    });
+});
+
+// Rota para verificar status de login
+app.get('/users/login-status', (req, res) => {
+    if (req.session.user) {
+        res.send({ loggedIn: true, email: req.session.user.email });
+    } else {
+        res.send({ loggedIn: false });
+    }
 });
 
 app.listen(port, () => {
